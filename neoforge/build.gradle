@@ -35,3 +35,15 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 dependencies {
     implementation libs.neoforged.neoforge.get()
 }
+
+// Remove this once https://github.com/neoforged/NeoGradle/pull/131 is merged
+afterEvaluate {
+    if (tasks.jarJar.enabled) {
+        configurations.runtimeElements.outgoing.artifacts.clear()
+        artifacts {
+            runtimeElements(tasks.jarJar) {
+                builtBy tasks.jarJar
+            }
+        }
+    }
+}
