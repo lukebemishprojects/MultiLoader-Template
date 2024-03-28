@@ -1,0 +1,48 @@
+[versions]
+
+minecraft = "1.20.4"
+
+fabric_api = "0.92.1+1.20.4"
+fabric_loader = "0.15.3"
+fabric_loom = "1.6.3"
+
+forge_forge = "1.20.4-49.0.19"
+forge_gradle = "6.0.21"
+
+neoforged_neoforge = "20.4.83-beta"
+neoforged_neogradle = "7.0.102"
+
+jetbrains_annotations = "24.0.1"
+
+ideaext = "1.1.7"
+
+# Should not use snapshot versions for plugins!
+# It'll result in random re-decomp-recomp cycles with neogradle (And is also bad for reproducibility)
+# Unfortunately, there is no "frozen" vanillagradle version that fixes the version manifest reading issue...
+sponge_vanillagradle = "0.2.1-SNAPSHOT"
+sponge_mixin = "0.8.5"
+sponge_mixingradle = "0.7.38"
+
+[libraries]
+
+minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+
+fabric_api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric_api" }
+fabric_loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric_loader" }
+
+neoforged_neoforge = { module = "net.neoforged:neoforge", version.ref = "neoforged_neoforge" }
+
+jetbrains_annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains_annotations" }
+
+forge_forge = { module = "net.minecraftforge:forge", version.ref = "forge_forge" }
+
+sponge_mixin = { module = "org.spongepowered:mixin", version.ref = "sponge_mixin" }
+
+[plugins]
+
+fabric_loom = { id = "fabric-loom", version.ref = "fabric_loom" }
+forge_gradle = { id = "net.minecraftforge.gradle", version.ref = "forge_gradle" }
+sponge_vanillagradle = { id = "org.spongepowered.gradle.vanilla", version.ref = "sponge_vanillagradle" }
+sponge_mixingradle = { id = "org.spongepowered.mixin", version.ref = "sponge_mixingradle" }
+neoforged_neogradle_userdev = { id = "net.neoforged.gradle.userdev", version.ref = "neoforged_neogradle" }
+ideaext = { id = "org.jetbrains.gradle.plugin.idea-ext", version.ref = "ideaext" }
