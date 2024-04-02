@@ -19,13 +19,8 @@ repositories {
     }
 }
 
-configurations {
-    rootProjectLicense.canBeResolved = true
-}
-
 dependencies {
     compileOnly libs.jetbrains.annotations
-    rootProjectLicense project(path: ':', configuration: 'license')
 }
 
 ['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
@@ -34,7 +29,6 @@ dependencies {
             capability("$group:$artifact_id-${project.name}-${libs.versions.minecraft.get()}:$version")
         }
         capability("$group:$artifact_id-common-${libs.versions.minecraft.get()}:$version")
-        capability("$group:$artifact_id:$version")
     }
     publishing.publications.configureEach {
         suppressPomMetadataWarningsFor(variant)
@@ -51,15 +45,13 @@ publishing {
 }
 
 sourcesJar {
-    dependsOn(configurations.rootProjectLicense)
-    from(configurations.rootProjectLicense) {
+    from("${project.rootDir}/LICENSE") {
         rename { "${it}_${mod_name}" }
     }
 }
 
 jar {
-    dependsOn(configurations.rootProjectLicense)
-    from(configurations.rootProjectLicense) {
+    from("${project.rootDir}/LICENSE") {
         rename { "${it}_${mod_name}" }
     }
 
