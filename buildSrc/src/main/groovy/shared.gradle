@@ -25,10 +25,8 @@ dependencies {
 
 ['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
     configurations."$variant".outgoing {
-        if (project.name != 'common') {
-            capability("$group:$artifact_id-${project.name}-${libs.versions.minecraft.get()}:$version")
-        }
-        capability("$group:$artifact_id-common-${libs.versions.minecraft.get()}:$version")
+        capability("$group:$artifact_id-${project.name}-${libs.versions.minecraft.get()}:$version")
+        capability("$group:$artifact_id:$version")
     }
     publishing.publications.configureEach {
         suppressPomMetadataWarningsFor(variant)
