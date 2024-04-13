@@ -11,8 +11,9 @@ dependencies {
 }
 
 loom {
-    if (!configurations.commonAccessWidener.files.empty) {
-        accessWidenerPath.set(configurations.commonAccessWidener.singleFile)
+    def awFile = file("${project(':common').projectDir}/src/main/resources/${mod_id}.accesswidener")
+    if(awFile.exists()){
+        accessWidenerPath.set(awFile)
     }
     mixin {
         defaultRefmapName.set("${mod_id}.refmap.json")

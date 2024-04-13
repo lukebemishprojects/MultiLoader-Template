@@ -9,9 +9,6 @@ configurations {
     commonResources{
         canBeResolved = true
     }
-    commonAccessWidener{
-        canBeResolved = true
-    }
 }
 
 dependencies {
@@ -22,7 +19,6 @@ dependencies {
     }
     commonJava project(path: ':common', configuration: 'commonJava')
     commonResources project(path: ':common', configuration: 'commonResources')
-    commonAccessWidener project(path: ':common', configuration: 'commonAccessWidener')
 }
 
 tasks.named('compileJava', JavaCompile) {

@@ -5,8 +5,9 @@ plugins {
 
 minecraft {
     version(libs.versions.minecraft.get())
-    if(file("src/main/resources/${mod_id}.accesswidener").exists()){
-        accessWideners(file("src/main/resources/${mod_id}.accesswidener"))
+    def awFile = file("src/main/resources/${mod_id}.accesswidener")
+    if(awFile.exists()){
+        accessWideners(awFile)
     }
 }
 
@@ -19,10 +20,6 @@ configurations {
         canBeResolved = false
         canBeConsumed = true
     }
-    commonAccessWidener {
-        canBeResolved = false
-        canBeConsumed = true
-    }
 }
 
 dependencies {
@@ -32,8 +29,4 @@ dependencies {
 artifacts {
     commonJava sourceSets.main.java.sourceDirectories.singleFile
     commonResources sourceSets.main.resources.sourceDirectories.singleFile
-    var accessWidener = project.file("src/main/resources/${mod_id}.accesswidener")
-    if (accessWidener.exists()) {
-        commonAccessWidener accessWidener
-    }
 }
